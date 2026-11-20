@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#030712">
+<title>CARD AKSES | DARK NEON</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #030712;
+    color: white;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+    radial-gradient(circle at top, #063b70, transparent 45%),
+    radial-gradient(circle at bottom, #001a38, transparent 50%);
+}
+
+header {
+    padding: 22px 15px;
+    text-align: center;
+    background: #050c1b;
+    border-bottom: 1px solid #008cff;
+    box-shadow: 0 0 20px #008cff55;
+}
+
+header h1 {
+    font-size: 27px;
+    color: #00bfff;
+    letter-spacing: 4px;
+    text-shadow: 0 0 15px #008cff;
+}
+
+header p {
+    font-size: 11px;
+    color: #789bbd;
+    margin-top: 8px;
+    letter-spacing: 2px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    padding: 15px 5px;
+    background: #071426;
+    border-bottom: 1px solid #087cff55;
+}
+
+nav a {
+    color: #9bcfff;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #00bfff;
+}
+
+.container {
+    max-width: 850px;
+    margin: auto;
+    padding: 20px;
+}
+
+.panel {
+    background: #081629;
+    border: 1px solid #087cff88;
+    border-radius: 13px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px #008cff22;
+}
+
+.panel h2 {
+    color: #00bfff;
+    font-size: 17px;
+    margin-bottom: 13px;
+}
+
+.online {
+    color: #00ff9d;
+    font-size: 12px;
+}
+
+.clock {
+    font-size: 27px;
+    color: #00c8ff;
+    margin-top: 15px;
+    text-shadow: 0 0 12px #008cff;
+}
+
+.date {
+    color: #789bbd;
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+.section-title {
+    color: #00bfff;
+    font-size: 17px;
+    margin: 25px 0 15px;
+    letter-spacing: 2px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 13px;
+}
+
+.tool {
+    background: linear-gradient(145deg, #0b203b, #050b17);
+    border: 1px solid #087cff88;
+    border-radius: 12px;
+    padding: 20px 12px;
+    text-align: center;
+    box-shadow: 0 0 12px #008cff22;
+    transition: .25s;
+}
+
+.tool:active {
+    transform: scale(.96);
+}
+
+.tool .symbol {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.tool h3 {
+    color: #00bfff;
+    font-size: 13px;
+    margin-bottom: 9px;
+}
+
+.tool p {
+    font-size: 10px;
+    color: #819bb8;
+    line-height: 1.5;
+    min-height: 30px;
+}
+
+.tool button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 13px;
+    border: 1px solid #008cff;
+    border-radius: 7px;
+    background: #007bff22;
+    color: #00c8ff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.tool button:active {
+    background: #008cff;
+    color: white;
+}
+
+.result {
+    background: #081629;
+    border: 1px solid #087cff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 22px;
+    min-height: 115px;
+}
+
+.result h3 {
+    color: #00bfff;
+    margin-bottom: 12px;
+}
+
+.result p {
+    color: #a4bfdc;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.result .tag {
+    display: inline-block;
+    color: #00ff9d;
+    font-size: 11px;
+    margin-bottom: 12px;
+}
+
+.owner {
+    text-align: center;
+    background: #081629;
+    border: 1px solid #087cff;
+    border-radius: 13px;
+    padding: 27px 15px;
+    margin-top: 25px;
+    box-shadow: 0 0 15px #008cff33;
+}
+
+.owner h2 {
+    color: #00bfff;
+    margin-bottom: 12px;
+}
+
+.owner p {
+    font-size: 13px;
+    color: #819bb8;
+    line-height: 1.7;
+}
+
+.whatsapp {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 13px 22px;
+    border-radius: 8px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    box-shadow: 0 0 18px #008cff88;
+}
+
+.whatsapp:hover {
+    background: #00aaff;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #52708e;
+    font-size: 11px;
+    line-height: 1.8;
+    margin-top: 25px;
+}
+
+/* LOCK SCREEN */
+#lockScreen {
+    position: fixed;
+    inset: 0;
+    background: #020712f5;
+    z-index: 100;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.lock-card {
+    width: 100%;
+    max-width: 330px;
+    background: #081629;
+    border: 1px solid #008cff;
+    border-radius: 15px;
+    padding: 28px;
+    text-align: center;
+    box-shadow: 0 0 25px #008cff66;
+}
+
+.lock-card h2 {
+    color: #00bfff;
+    margin-bottom: 13px;
+}
+
+.lock-card p {
+    color: #819bb8;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.lock-card input {
+    width: 100%;
+    padding: 13px;
+    margin: 18px 0;
+    background: #030712;
+    color: white;
+    border: 1px solid #008cff;
+    border-radius: 7px;
+    outline: none;
+}
+
+.lock-card button {
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+@media(max-width: 400px) {
+    .container {
+        padding: 13px;
+    }
+
+    .grid {
+        gap: 10px;
+    }
+
+    .tool {
+        padding: 16px 9px;
+    }
+
+    nav {
+        gap: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>CARD AKSES</h1>
+    <p>ADVANCED SECURITY DASHBOARD</p>
+</header>
+
+<nav>
+    <a href="#home">HOME</a>
+    <a href="#features">FEATURES</a>
+    <a href="#contact">CONTACT</a>
+</nav>
+
+<div class="container">
+
+    <!-- HOME -->
+    <section id="home" class="panel">
+        <h2>◈ SYSTEM INFORMATION</h2>
+
+        <p class="online">● SYSTEM ONLINE</p>
+
+        <div class="clock" id="clock">00:00:00</div>
+        <div class="date" id="date">Loading...</div>
+    </section>
+
+    <!-- FEATURES -->
+    <h2 class="section-title" id="features">
+        ◈ MAIN FEATURES
+    </h2>
+
+    <div class="grid" id="dashboard">
+
+        <div class="tool">
+            <div class="symbol">🚫</div>
+            <h3>BANNED</h3>
+            <p>Informasi status pemblokiran akun.</p>
+            <button onclick="feature('BANNED')">OPEN</button>
+        </div>
+
+        <div class="tool">
+            <div class="symbol">✅</div>
+            <h3>UNBANNED</h3>
+            <p>Panduan pemulihan akun resmi.</p>
+            <button onclick="feature('UNBANNED')">OPEN</button>
+        </div>
+
+        <div class="tool">
+            <div class="symbol">⚡</div>
+            <h3>ANTI BUG</h3>
+            <p>Pemeriksaan kondisi perangkat.</p>
+            <button onclick="feature('ANTI BUG')">CHECK</button>
+        </div>
+
+        <div class="tool">
+            <div class="symbol">🛡️</div>
+            <h3>ANTI SADAP</h3>
+            <p>Perlindungan keamanan akun.</p>
+            <button onclick="feature('ANTI SADAP')">CHECK</button>
+        </div>
+
+        <div class="tool">
+            <div class="symbol">📱</div>
+            <h3>ANTI BAND WA</h3>
+            <p>Panduan menghindari pembatasan.</p>
+            <button onclick="feature('ANTI BAND WA')">CHECK</button>
+        </div>
+
+        <div class="tool">
+            <div class="symbol">🔒</div>
+            <h3>LOCK</h3>
+            <p>Kunci dashboard menggunakan PIN.</p>
+            <button onclick="lockDashboard()">LOCK</button>
+        </div>
+
+        <div class="tool">
+            <div class="symbol">🔓</div>
+            <h3>UNLOCK</h3>
+            <p>Buka dashboard menggunakan PIN.</p>
+            <button onclick="unlockDashboard()">UNLOCK</button>
+        </div>
+
+        <div class="tool">
+            <div class="symbol">🔍</div>
+            <h3>SADAP</h3>
+            <p>Periksa keamanan perangkat sendiri.</p>
+            <button onclick="feature('SADAP')">CHECK</button>
+        </div>
+
+    </div>
+
+    <!-- RESULT -->
+    <div class="result" id="result" aria-live="polite">
+        <h3>◈ SYSTEM CONSOLE</h3>
+        <span class="tag">READY</span>
+        <p>Pilih menu di atas untuk memulai.</p>
+    </div>
+
+    <!-- CONTACT -->
+    <section class="owner" id="contact">
+        <h2>◈ CONTACT OWNER</h2>
+
+        <p>
+            Butuh bantuan atau informasi lebih lanjut?
+            Hubungi owner melalui WhatsApp.
+        </p>
+
+        <a class="whatsapp"
+           id="whatsappBtn"
+           href="https://wa.me/6283175484223?text=Halo%20Owner%2C%20saya%20ingin%20bertanya%20tentang%20Card%20Akses."
+           target="_blank"
+           rel="noopener noreferrer">
+            CONTACT VIA WHATSAPP
+        </a>
+    </section>
+
+</div>
+
+<footer>
+    CARD AKSES © 2026<br>
+    DARK NEON BLUE SYSTEM<br>
+    ALL RIGHTS RESERVED
+</footer>
+
+<!-- LOCK MODAL -->
+<div id="lockScreen">
+    <div class="lock-card">
+
+        <h2>🔒 DASHBOARD LOCKED</h2>
+
+        <p>
+            Dashboard terkunci.
+            Masukkan PIN untuk membuka kembali.
+        </p>
+
+        <input
+            type="password"
+            id="pinInput"
+            placeholder="ENTER PIN"
+            inputmode="numeric"
+            maxlength="12">
+
+        <button onclick="unlockDashboard()">
+            UNLOCK DASHBOARD
+        </button>
+
+        <p id="pinMessage" style="margin-top:12px"></p>
+
+    </div>
+</div>
+
+<script>
+
+// ==========================
+// DIGITAL CLOCK
+// ==========================
+
+function updateClock() {
+
+    const now = new Date();
+
+    document.getElementById("clock").textContent =
+        now.toLocaleTimeString("id-ID");
+
+    document.getElementById("date").textContent =
+        now.toLocaleDateString("id-ID", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        });
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+
+
+// ==========================
+// FEATURE SYSTEM
+// ==========================
+
+const messages = {
+
+    "BANNED": {
+        status: "ACCOUNT INFORMATION",
+        text: "Menu BANNED merupakan simulasi informasi pemblokiran akun. Website ini tidak memiliki akses ke server WhatsApp untuk memeriksa atau memblokir akun."
+    },
+
+    "UNBANNED": {
+        status: "RECOVERY GUIDE",
+        text: "Untuk memulihkan akun WhatsApp yang diblokir, buka aplikasi resmi dan gunakan menu Ajukan Peninjauan jika tersedia."
+    },
+
+    "ANTI BUG": {
+        status: "DEVICE CHECK",
+        text: "Periksa pembaruan sistem, ruang penyimpanan, koneksi internet, dan versi aplikasi. Restart perangkat jika aplikasi mengalami gangguan."
+    },
+
+    "ANTI SADAP": {
+        status: "SECURITY PROTECTION",
+        text: "Periksa perangkat tertaut WhatsApp, aktifkan verifikasi dua langkah, gunakan kunci layar, dan jangan pernah membagikan kode OTP."
+    },
+
+    "ANTI BAND WA": {
+        status: "ACCOUNT PROTECTION",
+        text: "Gunakan aplikasi WhatsApp resmi, hindari spam, jangan mengirim pesan massal tanpa izin, dan patuhi ketentuan layanan."
+    },
+
+    "SADAP": {
+        status: "SECURITY SCANNER",
+        text: "Menu ini digunakan untuk panduan pemeriksaan keamanan perangkat milik sendiri. Tidak melakukan penyadapan atau mengakses perangkat orang lain."
+    }
+
+};
+
+function feature(name) {
+
+    const data = messages[name];
+
+    if (!data) return;
+
+    const result = document.getElementById("result");
+
+    result.replaceChildren();
+
+    const title = document.createElement("h3");
+    title.textContent = "◈ " + name;
+
+    const tag = document.createElement("span");
+    tag.className = "tag";
+    tag.textContent = data.status;
+
+    const paragraph = document.createElement("p");
+    paragraph.textContent = data.text;
+
+    result.append(title, tag, paragraph);
+
+    result.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+    });
+}
+
+
+// ==========================
+// LOCK / UNLOCK SYSTEM
+// ==========================
+
+// PIN demo. Ganti sebelum digunakan.
+const correctPIN = "1234";
+
+const lockScreen = document.getElementById("lockScreen");
+const pinInput = document.getElementById("pinInput");
+const pinMessage = document.getElementById("pinMessage");
+
+function lockDashboard() {
+
+    lockScreen.style.display = "flex";
+    pinInput.value = "";
+    pinMessage.textContent = "";
+
+    pinInput.focus();
+}
+
+function unlockDashboard() {
+
+    const pin = pinInput.value;
+
+    if (pin === correctPIN) {
+
+        lockScreen.style.display = "none";
+
+        const result = document.getElementById("result");
+
+        result.innerHTML =
+            "<h3>◈ SYSTEM UNLOCKED</h3>" +
+            "<span class='tag'>SUCCESS</span>" +
+            "<p>Dashboard berhasil dibuka kembali.</p>";
+
+    } else {
+
+        pinMessage.textContent = "PIN SALAH! Coba lagi.";
+        pinMessage.style.color = "#ff5555";
+
+        pinInput.value = "";
+        pinInput.focus();
+    }
+}
+
+// Enter untuk unlock
+pinInput.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        unlockDashboard();
+    }
+});
+
+
+// ==========================
+// BUTTON EFFECT
+// ==========================
+
+document.querySelectorAll("button").forEach(button => {
+
+    button.addEventListener("click", function() {
+
+        this.style.opacity = "0.7";
+
+        setTimeout(() => {
+            this.style.opacity = "1";
+        }, 150);
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
